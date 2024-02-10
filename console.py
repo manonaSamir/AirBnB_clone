@@ -21,15 +21,15 @@ class HBNBCommand(cmd.Cmd):
                    "Place", "Review", "BaseModel", "Count"]
 
     def do_quit(self, line):
-        """Quit command to exit the program"""
+        """Quit command to exit the program\n"""
         return True
 
     def do_EOF(self, line):
-        """Quit command to exit the program"""
+        """Quit command to exit the program\n"""
         return True
     
     def emptyline(self):
-       """Do nothing when empty line is entered."""
+       """Do nothing when empty line is entered.\n"""
        pass
     
     def do_create(self, line):
