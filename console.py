@@ -3,8 +3,7 @@
 """This module for the entry point of the command interpreter"""
 
 import cmd
-import models
-
+from models import storage
 from models.base_model import BaseModel
 import json
 from models import storage
@@ -86,7 +85,6 @@ class HBNBCommand(cmd.Cmd):
     def do_all(self, line):
         """ Prints all string representation of all
         instances based or not on the class name."""
-        bb = models.storage.all()
         arg = line.split(" ", 1)
         if arg[0] not in self.app_command:
             print("** class doesn't exist **")
