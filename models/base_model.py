@@ -5,6 +5,7 @@ This module for defines all common attributes/methods for other classes
 """
 
 import datetime
+from pyexpat import model
 import models
 import uuid
 
