@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-"""This is user class that contain all user in system"""
+""" Module for user class that contain all user in system"""
 from models.base_model import BaseModel
 
 

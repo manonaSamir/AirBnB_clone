@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-"""the entry point of the command interpreter"""
+"""Module for the entry point of the command interpreter"""
 
 import cmd
 from xml.parsers.expat import model

@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-"""This is state class that contain all states in system"""
+"""Module for state class that contain all states in system"""
 from models.base_model import BaseModel
 
 
