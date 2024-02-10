@@ -13,6 +13,7 @@ from models.place import Place
 from models.review import Review
 import models
 
+
 class HBNBCommand(cmd.Cmd):
     """"command interpreter """
     # intro = "welcome air-bnb project \n"
@@ -27,11 +28,11 @@ class HBNBCommand(cmd.Cmd):
     def do_EOF(self, line):
         """Quit command to exit the program\n"""
         return True
-    
+
     def emptyline(self):
-       """Do nothing when empty line is entered.\n"""
-       pass
-    
+        """Do nothing when empty line is entered.\n"""
+        pass
+
     def do_create(self, line):
         """create new instance"""
 
@@ -47,18 +48,18 @@ class HBNBCommand(cmd.Cmd):
     def do_show(self, line):
         """Prints the string representation of an instance
        based on the class name and id"""
-        
-        arg = line.split(" ", 1)                
-        if (len(arg) > 1  and "\"" in arg[1]):
+
+        arg = line.split(" ", 1)
+        if (len(arg) > 1 and "\"" in arg[1]):
             arg[1] = arg[1].strip('\"')
-        
+
         if not line:
             print("** class name missing **")
             return
 
         elif arg[0] not in self.app_command:
             print("** class doesn't exist **")
-        
+
         elif len(arg) == 1:
             print("** instance id missing **")
 
@@ -70,27 +71,47 @@ class HBNBCommand(cmd.Cmd):
 
     def do_destroy(self, line):
         """Deletes an instance based on the class name and id"""
-        arg = line.split(" ", 1)
-        if (len(arg) > 1  and "\"" in arg[1]):
-            arg[1] = arg[1].strip('\"')   
-        
-        if not line:
+        sw = 0
+        arg = line.split()
+        if line == "":
             print("** class name missing **")
-            return
-
         elif arg[0] not in self.app_command:
             print("** class doesn't exist **")
-        
         elif len(arg) < 2:
             print("** instance id missing **")
-
-        if (len(arg) > 1):
-            if arg[0]+'.'+arg[1] not in models.storage\
-                    ._FileStorage__objects.keys():
+        else:
+            in_key = (arg[0] + "." + arg[1])
+            dict_objects = models.storage.all()
+            for key, obj in dict_objects.items():
+                if key == in_key:
+                    del dict_objects[key]
+                    sw = 1
+                    models.storage.save()
+                    models.storage.reload()
+                    return
+            if sw == 0:
                 print("** no instance found **")
-            else:
-                del models.storage._FileStorage__objects[arg[0]+'.'+arg[1]]
-                models.storage.save()
+        # arg = line.split(" ", 1)
+        # if (len(arg) > 1  and "\"" in arg[1]):
+        #     arg[1] = arg[1].strip('\"')
+
+        # if not line:
+        #     print("** class name missing **")
+        #     return
+
+        # elif arg[0] not in self.app_command:
+        #     print("** class doesn't exist **")
+
+        # elif len(arg) < 2:
+        #     print("** instance id missing **")
+
+        # if (len(arg) >= 2):
+        #     if arg[0]+'.'+arg[1] not in models.storage\
+        #             ._FileStorage__objects.keys():
+        #         print("** no instance found **")
+        #     else:
+        #         del models.storage._FileStorage__objects[arg[0]+'.'+arg[1]]
+        #         models.storage.save()
 
     def do_all(self, line):
         """ Prints all string representation of all
@@ -155,7 +176,8 @@ class HBNBCommand(cmd.Cmd):
     def count(self, line):
         """Counts the number of a class."""
         arg = line.split()
-        objects = [key for key in models.storage.all() if key.startswith(arg[0])]
+        objects = [key for key in models.storage.all()
+                   if key.startswith(arg[0])]
         print(len(objects))
 
     def fun_update(self, cls_name, obj_attr):
@@ -168,7 +190,7 @@ class HBNBCommand(cmd.Cmd):
             dictionary = eval(arg_dict)
             for key, val in dictionary.items():
                 obj = models.storage._FileStorage__objects[cls_name +
-                                                    '.'+args[0].strip('" ')]
+                                                           '.'+args[0].strip('" ')]
                 if key in obj.__dict__.keys():
                     try:
                         if val.isdigit():
