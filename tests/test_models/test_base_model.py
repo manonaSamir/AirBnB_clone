@@ -1,0 +1,60 @@
+#!/usr/bin/python3
+""" base model testing """
+
+import unittest
+from models.base_model import BaseModel
+import datetime
+import uuid
+
+class TestBaseModel(unittest.TestCase):
+    """Test cases for BaseModel"""
+
+    def test_init(self):
+        """Test the __init__() method"""
+        models = BaseModel()
+        self.assertIsInstance(models.id, str)
+        self.assertIsInstance(models.created_at, datetime.datetime)
+        self.assertIsInstance(models.updated_at, datetime.datetime)
+        
+    def test_init_with_data(self):
+        id_val = str(uuid.uuid4())
+        created_at_val = "2024-02-10T08:00:00"
+        updated_at_val = "2024-02-10T09:00:00"
+        kwargs = {
+            "id": id_val,
+            "created_at": created_at_val,
+            "updated_at": updated_at_val,
+            "other_attribute": "other_value"
+        }
+        obj = BaseModel(**kwargs)
+        self.assertEqual(obj.id, id_val)
+        self.assertEqual(obj.created_at, datetime.datetime.fromisoformat(created_at_val))
+        self.assertEqual(obj.updated_at, datetime.datetime.fromisoformat(updated_at_val))
+        self.assertEqual(obj.other_attribute, "other_value")
+
+    # def test_str(self):
+    #     """Test the __str__() method"""
+    #     base_model = BaseModel()
+    #     expected_str = f"[BaseModel] ({base_model.id}) {base_model.__dict__}"
+    #     self.assertEqual(str(base_model), expected_str)
+
+    # def test_save(self):
+    #     """Test the save() method"""
+    #     base_model = BaseModel()
+    #     old_updated_at = base_model.updated_at
+    #     base_model.save()
+    #     new_updated_at = base_model.updated_at
+    #     self.assertNotEqual(old_updated_at, new_updated_at)
+
+    # def test_to_dict(self):
+    #     """Test the to_dict() method"""
+    #     base_model = BaseModel()
+    #     base_model_dict = base_model.to_dict()
+    #     self.assertTrue(isinstance(base_model_dict, dict))
+    #     self.assertEqual(base_model_dict["__class__"], "BaseModel")
+    #     self.assertTrue(isinstance(base_model_dict["created_at"], str))
+    #     self.assertTrue(isinstance(base_model_dict["updated_at"], str))
+    #     self.assertTrue(isinstance(base_model_dict["id"], str))
+
+if __name__ == "__main__":
+    unittest.main()
