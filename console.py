@@ -15,7 +15,7 @@ import models
 
 class HBNBCommand(cmd.Cmd):
     """"command interpreter """
-    intro = "welcome air-bnb project \n"
+    # intro = "welcome air-bnb project \n"
     prompt = "(hbnb) "
     app_command = ["User", "State", "City", "Amenity",
                    "Place", "Review", "BaseModel", "Count"]
