@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-"""Module for Place class that contain all Places in system"""
+"""This module for Place class that contain all Places in system"""
 
 from models.base_model import BaseModel
 

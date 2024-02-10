@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 """
-Module for defines all common attributes/methods for other classes
+This module for defines all common attributes/methods for other classes
 """
 
 import datetime

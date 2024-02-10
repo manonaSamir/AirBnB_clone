@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-"""Module for  City  class that contain all cities in system"""
+"""This module for  City  class that contain all cities in system"""
 
 from models.base_model import BaseModel
 
