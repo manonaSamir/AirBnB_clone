@@ -71,7 +71,8 @@ class HBNBCommand(cmd.Cmd):
     def do_destroy(self, line):
         """Deletes an instance based on the class name and id"""
         arg = line.split(" ", 1)
-        ids = arg[1].strip('\"')
+        if (len(arg) > 1  and "\"" in arg[1]):
+            arg[1] = arg[1].strip('\"')        
         if not line:
             print("** class name missing **")
             return
@@ -81,11 +82,11 @@ class HBNBCommand(cmd.Cmd):
         elif len(line) == 1:
             print("** instance id missing **")
 
-        elif arg[0]+'.'+ids not in models.storage\
+        elif arg[0]+'.'+arg[1] not in models.storage\
                 ._FileStorage__objects.keys():
             print("** no instance found **")
         else:
-            del models.storage._FileStorage__objects[arg[0]+'.'+ids]
+            del models.storage._FileStorage__objects[arg[0]+'.'+arg[1]]
             models.storage.save()
 
     def do_all(self, line):
