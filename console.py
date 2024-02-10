@@ -72,14 +72,16 @@ class HBNBCommand(cmd.Cmd):
         """Deletes an instance based on the class name and id"""
         arg = line.split(" ", 1)
         if (len(arg) > 1  and "\"" in arg[1]):
-            arg[1] = arg[1].strip('\"')        
+            arg[1] = arg[1].strip('\"')   
+        
         if not line:
             print("** class name missing **")
             return
 
         elif arg[0] not in self.app_command:
             print("** class doesn't exist **")
-        elif len(arg[0]) == 1:
+        
+        elif len(arg) < 2:
             print("** instance id missing **")
 
         if (len(arg) > 1):
