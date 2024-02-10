@@ -82,12 +82,13 @@ class HBNBCommand(cmd.Cmd):
         elif len(line) == 1:
             print("** instance id missing **")
 
-        elif arg[0]+'.'+arg[1] not in models.storage\
-                ._FileStorage__objects.keys():
-            print("** no instance found **")
-        else:
-            del models.storage._FileStorage__objects[arg[0]+'.'+arg[1]]
-            models.storage.save()
+        if (len(arg) > 1):
+            if arg[0]+'.'+arg[1] not in models.storage\
+                    ._FileStorage__objects.keys():
+                print("** no instance found **")
+            else:
+                del models.storage._FileStorage__objects[arg[0]+'.'+arg[1]]
+                models.storage.save()
 
     def do_all(self, line):
         """ Prints all string representation of all
