@@ -3,7 +3,6 @@
 """This module for the entry point of the command interpreter"""
 
 import cmd
-import models
 from models.base_model import BaseModel
 import json
 from models.user import User
@@ -12,7 +11,7 @@ from models.city import City
 from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
-
+import models
 
 class HBNBCommand(cmd.Cmd):
     """"command interpreter """
@@ -28,7 +27,11 @@ class HBNBCommand(cmd.Cmd):
     def do_EOF(self, line):
         """Quit command to exit the program"""
         return True
-
+    
+    def emptyline(self):
+       """Do nothing when empty line is entered."""
+       pass
+    
     def do_create(self, line):
         """create new instance"""
 
@@ -44,22 +47,26 @@ class HBNBCommand(cmd.Cmd):
     def do_show(self, line):
         """Prints the string representation of an instance
        based on the class name and id"""
-        arg = line.split(" ", 1)
-        ids = arg[1].strip('\"')
+        
+        arg = line.split(" ", 1)                
+        if (len(arg) > 1  and "\"" in arg[1]):
+            arg[1] = arg[1].strip('\"')
+        
         if not line:
             print("** class name missing **")
             return
 
         elif arg[0] not in self.app_command:
             print("** class doesn't exist **")
-        elif len(line) == 1:
+        
+        elif len(arg) == 1:
             print("** instance id missing **")
 
-        elif arg[0]+'.'+ids not in models.storage\
+        elif arg[0]+'.'+arg[1] not in models.storage\
                 ._FileStorage__objects.keys():
             print("** no instance found **")
         else:
-            print(models.storage._FileStorage__objects[arg[0]+'.'+ids])
+            print(models.storage._FileStorage__objects[arg[0]+'.'+arg[1]])
 
     def do_destroy(self, line):
         """Deletes an instance based on the class name and id"""
