@@ -43,6 +43,6 @@ class FileStorage:
                 obj_file = json.loads(data)
             for key, val in obj_file.items():
                 FileStorage.__objects[key] =\
-                   eval(f"{key.split('.')[0]}(**obj_file[key])")
+                    eval(f"{key.split('.')[0]}(**obj_file[key])")
         except FileNotFoundError:
             pass
