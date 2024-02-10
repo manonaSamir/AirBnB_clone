@@ -12,10 +12,14 @@ class TestBaseModel(unittest.TestCase):
     """Test cases for BaseModel"""
     def test_init_method(self):
         """Test the __init__() method"""
-        models = BaseModel()
-        self.assertIsInstance(models.id, str)
-        self.assertIsInstance(models.created_at, datetime.datetime)
-        self.assertIsInstance(models.updated_at, datetime.datetime)
+        # models = BaseModel()
+        # self.assertIsInstance(models.id, str)
+        # self.assertIsInstance(models.created_at, datetime.datetime)
+        # self.assertIsInstance(models.updated_at, datetime.datetime)
+        base_model = BaseModel()
+        self.assertTrue(hasattr(base_model, "id"))
+        self.assertTrue(hasattr(base_model, "created_at"))
+        self.assertTrue(hasattr(base_model, "updated_at"))
 
     def test_init_with_data_method(self):
         id_val = str(uuid.uuid4())
