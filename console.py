@@ -202,14 +202,19 @@ class HBNBCommand(cmd.Cmd):
                     else:
                        try:
                           obj_id = args[0].strip('" ')
-                          data = args[1].split(':')
-                          if data[1].isdigit():
-                                data[1] = int(data[1])
-                          elif data[1].replace('.', '', 1).isdigit():
-                              data[1] = float(data[1])
+                          if len(args) < 2:
+                              data = args[1].split(':')
+                              if data[1].isdigit():
+                                    data[1] = int(data[1])
+                              elif data[1].replace('.', '', 1).isdigit():
+                                  data[1] = float(data[1])
+                              setattr(obj, data[0].strip('" ').replace("'", ""), data[1].strip('" '))   
+                          else:
+                               if args[2].startswith('"'):
+                                    args[2] = args[2].split('"')[1]
+                               setattr(obj, args[1], args[2])
                        except AttributeError:
                           pass                       
-                       setattr(obj, data[0].strip('" ').replace("'", ""), data[1].strip('" ')) 
                        
                        obj.save()
                 except (SyntaxError, ValueError):
