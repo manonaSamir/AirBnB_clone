@@ -209,7 +209,7 @@ class HBNBCommand(cmd.Cmd):
                               data[1] = float(data[1])
                        except AttributeError:
                           pass                       
-                       setattr(obj, data[0].strip('" '), data[1].strip('" ')) 
+                       setattr(obj, data[0].strip('" ').replace("'", ""), data[1].strip('" ')) 
                        
                        obj.save()
                 except (SyntaxError, ValueError):
