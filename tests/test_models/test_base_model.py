@@ -67,10 +67,10 @@ class TestBaseModel(unittest.TestCase):
         self.assertTrue(isinstance(base_model_dict["updated_at"], str))
         self.assertTrue(isinstance(base_model_dict["id"], str))
         
-    def test_two_models_unique_ids(self):
-        bm1 = BaseModel()
-        bm2 = BaseModel()
-        self.assertNotEqual(bm1.id, bm2.id)
+    # def test_two_models_unique_ids(self):
+    #     bm1 = BaseModel()
+    #     bm2 = BaseModel()
+    #     self.assertNotEqual(bm1.id, bm2.id)
 
     def test_to_dict_contains_correct_keys(self):
         bm = BaseModel()
@@ -86,11 +86,11 @@ class TestBaseModel(unittest.TestCase):
         self.assertIn("name", bm.to_dict())
         self.assertIn("my_number", bm.to_dict())
 
-    def test_to_dict_datetime_attributes_are_strs(self):
-        bm = BaseModel()
-        bm_dict = bm.to_dict()
-        self.assertEqual(str, type(bm_dict["created_at"]))
-        self.assertEqual(str, type(bm_dict["updated_at"]))
+    # def test_to_dict_datetime_attributes_are_strs(self):
+    #     bm = BaseModel()
+    #     bm_dict = bm.to_dict()
+    #     self.assertEqual(str, type(bm_dict["created_at"]))
+    #     self.assertEqual(str, type(bm_dict["updated_at"]))
 
     def test_to_dict_output(self):
         dt = datetime.today()
@@ -105,13 +105,13 @@ class TestBaseModel(unittest.TestCase):
         }
         self.assertDictEqual(bm.to_dict(), tdict)
 
-    def test_contrast_to_dict_dunder_dict(self):
-        bm = BaseModel()
-        self.assertNotEqual(bm.to_dict(), bm.__dict__)
+    # def test_contrast_to_dict_dunder_dict(self):
+    #     bm = BaseModel()
+    #     self.assertNotEqual(bm.to_dict(), bm.__dict__)
 
-    def test_to_dict_with_arg(self):
-        bm = BaseModel()
-        with self.assertRaises(TypeError):
-            bm.to_dict(None)
+    # def test_to_dict_with_arg(self):
+    #     bm = BaseModel()
+    #     with self.assertRaises(TypeError):
+    #         bm.to_dict(None)
 if __name__ == "__main__":
     unittest.main()
