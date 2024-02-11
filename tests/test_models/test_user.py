@@ -8,16 +8,23 @@ import unittest
 class TestDocsBaseModel(unittest.TestCase):
     """test docstrings for base and test_base files"""
 
-    def test_module(self):
-        """check module docstrings"""
-        obj = User()
-        self.assertTrue(len(obj.__doc__) > 0)
+    def setUp(self):
+        self.user = User()
 
-    def test_class(self):
-        """check class docstrings"""
-        self.assertTrue(len(User.__doc__) > 0)
+    def test_default_values(self):
+        self.assertEqual(self.user.email, "")
+        self.assertEqual(self.user.password, "")
+        self.assertEqual(self.user.first_name, "")
+        self.assertEqual(self.user.last_name, "")
 
-    def test_method(self):
-        """check method docstrings"""
-        for func in dir(User):
-            self.assertTrue(len(func.__doc__) > 0)
+    def test_set_values(self):
+        self.user.email = "example@example.com"
+        self.user.password = "password123"
+        self.user.first_name = "John"
+        self.user.last_name = "Doe"
+
+        self.assertEqual(self.user.email, "example@example.com")
+        self.assertEqual(self.user.password, "password123")
+        self.assertEqual(self.user.first_name, "John")
+        self.assertEqual(self.user.last_name, "Doe")
+        
