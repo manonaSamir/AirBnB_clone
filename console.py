@@ -193,20 +193,23 @@ class HBNBCommand(cmd.Cmd):
                 cls_name + '.' + obj_id)
             if obj:
                 try:
-                    attribute_dict = ast.literal_eval(','.join(args[1:]))
-                    if isinstance(attribute_dict, dict):
-                        for key, value in attribute_dict.items():
-                            setattr(obj, key.strip('" '), value)
-                        obj.save()
+                    if "{" in args[1]:
+                        attribute_dict = ast.literal_eval(','.join(args[1:]))
+                        if isinstance(attribute_dict, dict):
+                            for key, value in attribute_dict.items():
+                                setattr(obj, key.strip('" '), value)
+                            obj.save()
                     else:
                        try:
-                          if args[2].isdigit():
-                                args[2] = int(args[2])
-                          elif args[2].replace('.', '', 1).isdigit():
-                              args[2] = float(args[2])
+                          obj_id = args[0].strip('" ')
+                          data = args[1].split(':')
+                          if data[1].isdigit():
+                                data[1] = int(data[1])
+                          elif data[1].replace('.', '', 1).isdigit():
+                              data[1] = float(data[1])
                        except AttributeError:
                           pass                       
-                       setattr(obj, args[1].strip('" '), args[2].strip('" ')) 
+                       setattr(obj, data[0].strip('" '), data[1].strip('" ')) 
                        
                        obj.save()
                 except (SyntaxError, ValueError):
