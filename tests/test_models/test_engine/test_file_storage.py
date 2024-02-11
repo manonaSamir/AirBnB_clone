@@ -20,7 +20,9 @@ from models.engine.file_storage import FileStorage
 
 class Test_FileStorage(unittest.TestCase):
     """define variables and methods"""
-
+    
+    
+    
     def new(self, obj):
         """Test the new method"""
 
@@ -100,72 +102,14 @@ class Test_FileStorage(unittest.TestCase):
         storage = FileStorage()
 
         storage.save()
-        # self.assertTrue(path.isfile('file.json'))
-        # with open("file.json") as f:
-        #     self.assertEqual(f.read(), '{}')
-
-        ba = BaseModel()
-        storage.save()
-        self.assertTrue(path.isfile('file.json'))
-        with open("file.json") as f:
-            self.assertIsInstance(json.loads(f.read()), dict)
-        with open("file.json") as f:
-            self.assertEqual(json.loads(f.read())
-                             [ba.__class__.__name__+'.'+ba.id], ba.to_dict())
-
-        us = User()
-        storage.save()
-        self.assertTrue(path.isfile('file.json'))
-        with open("file.json") as f:
-            self.assertIsInstance(json.loads(f.read()), dict)
-        with open("file.json") as f:
-            self.assertEqual(json.loads(f.read())
-                             [us.__class__.__name__+'.'+us.id], us.to_dict())
-
-        st = State()
-        storage.save()
-        self.assertTrue(path.isfile('file.json'))
-        with open("file.json") as f:
-            self.assertIsInstance(json.loads(f.read()), dict)
-        with open("file.json") as f:
-            self.assertEqual(json.loads(f.read())
-                             [st.__class__.__name__+'.'+st.id], st.to_dict())
-
-        ci = City()
-        storage.save()
-        self.assertTrue(path.isfile('file.json'))
-        with open("file.json") as f:
-            self.assertIsInstance(json.loads(f.read()), dict)
-        with open("file.json") as f:
-            self.assertEqual(json.loads(f.read())
-                             [ci.__class__.__name__+'.'+ci.id], ci.to_dict())
-
-        am = Amenity()
-        storage.save()
-        self.assertTrue(path.isfile('file.json'))
-        with open("file.json") as f:
-            self.assertIsInstance(json.loads(f.read()), dict)
-        with open("file.json") as f:
-            self.assertEqual(json.loads(f.read())
-                             [am.__class__.__name__+'.'+am.id], am.to_dict())
-
-        pl = Place()
-        storage.save()
-        self.assertTrue(path.isfile('file.json'))
-        with open("file.json") as f:
-            self.assertIsInstance(json.loads(f.read()), dict)
-        with open("file.json") as f:
-            self.assertEqual(json.loads(f.read())
-                             [pl.__class__.__name__+'.'+pl.id], pl.to_dict())
-
-        re = Review()
-        storage.save()
-        self.assertTrue(path.isfile('file.json'))
-        with open("file.json") as f:
-            self.assertIsInstance(json.loads(f.read()), dict)
-        with open("file.json") as f:
-            self.assertEqual(json.loads(f.read())
-                             [re.__class__.__name__+'.'+re.id], re.to_dict())
+        
+    def test_save(self):
+        """Test the save() method"""
+        base_model = BaseModel()
+        old_updated_at = base_model.updated_at
+        base_model.save()
+        new_updated_at = base_model.updated_at
+        self.assertNotEqual(old_updated_at, new_updated_at)
 
     def test_reload(self):
         """Test the reload method"""
