@@ -12,6 +12,7 @@ from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
 import models
+import ast
 
 
 class HBNBCommand(cmd.Cmd):
@@ -182,68 +183,36 @@ class HBNBCommand(cmd.Cmd):
 
     def fun_update(self, cls_name, obj_attr):
         """ Updates an instance based on the class
-        name and id by adding or updating attribute"""
+          name and id by adding or updating attributes """
         args = obj_attr.split(',')
-        if "{" in args[1]:
-            arg_dict = obj_attr.split("{")[1]
-            arg_dict = "{" + arg_dict
-            dictionary = eval(arg_dict)
-            for key, val in dictionary.items():
-                obj = models.storage._FileStorage__objects
-                [cls_name + '.' + args[0].strip('" ')]
-                if key in obj.__dict__.keys():
-                    try:
-                        if val.isdigit():
-                            val = int(val)
-                        elif val.replace('.', '', 1).isdigit():
-                            val = float(val)
-                    except AttributeError:
-                        pass
-                else:
-                    try:
-                        if val.isdigit():
-                            val = int(val)
-                        elif val.replace('.', '', 1).isdigit():
-                            val = float(val)
-                    except AttributeError:
-                        pass
-                setattr(obj, key, val)
-                obj = eval(f"{cls_name}()")
-                obj.save()
-
+        obj_id = args[0].strip('" ')
+        if len(args) < 2:
+            print("** attribute missing **")
         else:
-            obj_id = args[0].strip('" ')
-            if len(args[0]) < 1:
-                print("** instance id missing **")
-            elif cls_name+'.'+obj_id not in models.storage\
-                    ._FileStorage__objects.keys():
-                print("** no instance found **")
-            elif len(args[1]) < 1:
-                print("** attribute name missing **")
-            elif len(args[2]) < 1:
-                print("** value missing **")
+            obj = models.storage._FileStorage__objects.get(
+                cls_name + '.' + obj_id)
+            if obj:
+                try:
+                    attribute_dict = ast.literal_eval(','.join(args[1:]))
+                    if isinstance(attribute_dict, dict):
+                        for key, value in attribute_dict.items():
+                            setattr(obj, key.strip('" '), value)
+                        obj.save()
+                    else:
+                       try:
+                          if args[2].isdigit():
+                                args[2] = int(args[2])
+                          elif args[2].replace('.', '', 1).isdigit():
+                              args[2] = float(args[2])
+                       except AttributeError:
+                          pass                       
+                       setattr(obj, args[1].strip('" '), args[2].strip('" ')) 
+                       
+                       obj.save()
+                except (SyntaxError, ValueError):
+                    print("** Invalid attribute format. Unable to evaluate **")
             else:
-                obj = models.storage._FileStorage__objects[cls_name+'.'+obj_id]
-                if args[1].strip('" ') in obj.__dict__.keys():
-                    try:
-                        if args[2].isdigit():
-                            args[2] = int(args[2])
-                        elif args[2].replace('.', '', 1).isdigit():
-                            args[2] = float(args[2])
-                    except AttributeError:
-                        pass
-                    setattr(obj, args[1].strip('" '), args[2].strip('" '))
-                else:
-                    try:
-                        if args[2].isdigit():
-                            args[2] = int(args[2])
-                        elif args[2].replace('.', '', 1).isdigit():
-                            args[2] = float(args[2])
-                    except AttributeError:
-                        pass
-                    setattr(obj, args[1].strip('" '), args[2].strip('" '))
-                obj = eval(f"{cls_name}()")
-                obj.save()
+                print("** no instance found **")
 
     def default(self, line):
         """retrieve all instances of a class by.all()"""

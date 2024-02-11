@@ -1,0 +1,55 @@
+{
+    "User.a23b07c8-49fe-48df-9fa9-868cd4226f9c": {
+        "id": "a23b07c8-49fe-48df-9fa9-868cd4226f9c",
+        "created_at": "2024-02-11T15:00:37.969138",
+        "updated_at": "2024-02-11T15:00:40.530959",
+        "first_name": "Betty",
+        "last_name": "Bar",
+        "email": "airbnb@mail.com",
+        "password": "root",
+        "__class__": "User"
+    },
+    "User.a4b927e1-3e45-47aa-b98d-472ed1d11964": {
+        "id": "a4b927e1-3e45-47aa-b98d-472ed1d11964",
+        "created_at": "2024-02-11T15:00:40.551800",
+        "updated_at": "2024-02-11T15:00:43.776659",
+        "first_name": "John",
+        "email": "airbnb2@mail.com",
+        "password": "root",
+        "__class__": "User"
+    },
+    "User.6e516bdd-18ed-4cc6-b928-d63594bd3231": {
+        "id": "6e516bdd-18ed-4cc6-b928-d63594bd3231",
+        "created_at": "2024-02-11T15:01:22.640458",
+        "updated_at": "2024-02-11T20:47:42.545659",
+        "first_name": "Johnd",
+        "last_name": "Bar",
+        "email": "airbnb@mail.com",
+        "password": "root",
+        "age": 89,
+        "__class__": "User"
+    },
+    "User.dbdaf6ca-04ef-4509-91df-750d707895da": {
+        "id": "dbdaf6ca-04ef-4509-91df-750d707895da",
+        "created_at": "2024-02-11T15:01:26.610996",
+        "updated_at": "2024-02-11T15:01:26.610996",
+        "first_name": "John",
+        "email": "airbnb2@mail.com",
+        "password": "root",
+        "__class__": "User"
+    },
+    "BaseModel.5c1487bb-c986-48ff-933a-fa1c334e8673": {
+        "id": "5c1487bb-c986-48ff-933a-fa1c334e8673",
+        "created_at": "2024-02-11T15:02:03.858938",
+        "updated_at": "2024-02-11T15:02:03.858938",
+        "name": "My First Model",
+        "my_number": 89,
+        "__class__": "BaseModel"
+    },
+    "User.3637f8c6-1304-404b-8c0d-f6600c69a5fb": {
+        "id": "3637f8c6-1304-404b-8c0d-f6600c69a5fb",
+        "created_at": "2024-02-11T20:09:36.116318",
+        "updated_at": "2024-02-11T20:09:36.116318",
+        "__class__": "User"
+    }
+}
