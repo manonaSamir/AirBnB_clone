@@ -200,5 +200,13 @@
         "name": "My First Model",
         "my_number": 89,
         "__class__": "BaseModel"
+    },
+    "BaseModel.6503b7cf-7ab3-4a19-b626-b142345da792": {
+        "id": "6503b7cf-7ab3-4a19-b626-b142345da792",
+        "created_at": "2024-02-11T11:35:54.926202",
+        "updated_at": "2024-02-11T11:35:54.926202",
+        "name": "My First Model",
+        "my_number": 89,
+        "__class__": "BaseModel"
     }
 }
