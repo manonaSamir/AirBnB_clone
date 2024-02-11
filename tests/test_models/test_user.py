@@ -4,7 +4,6 @@ from models.user import User
 import unittest
 
 
-
 class TestDocsBaseModel(unittest.TestCase):
     """test docstrings for base and test_base files"""
 
@@ -27,4 +26,3 @@ class TestDocsBaseModel(unittest.TestCase):
         self.assertEqual(self.user.password, "password123")
         self.assertEqual(self.user.first_name, "John")
         self.assertEqual(self.user.last_name, "Doe")
-        

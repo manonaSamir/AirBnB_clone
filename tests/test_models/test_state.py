@@ -4,10 +4,8 @@ from models.state import State
 import unittest
 
 
-
 class TestDocsBaseModel(unittest.TestCase):
     """test docstrings for base and test_base files"""
-
     def setUp(self):
         self.state = State()
 
@@ -17,5 +15,3 @@ class TestDocsBaseModel(unittest.TestCase):
     def test_set_value(self):
         self.state.name = "Egypt"
         self.assertEqual(self.state.name, "Egypt")
-        
-

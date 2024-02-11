@@ -1,13 +1,27 @@
 #!/usr/bin/python3
 """Unittests for testing console output."""
 
+
 import unittest
+import os
+import json
+import pycodestyle
+import io
 from console import HBNBCommand
+from models.engine.file_storage import FileStorage
 from unittest.mock import patch
-from io import StringIO
+from models.user import User
+from models.place import Place
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.review import Review
 import models
 
-def test_create(self):
+
+class Testconsole(unittest.TestCase):
+    """Class that tests the console"""
+    def test_create(self):
         """Tests the create command."""
         old_num = len(models.storage.all())
         tests = ["", "Model"]
@@ -24,29 +38,6 @@ def test_create(self):
                 out_val = output.getvalue()
                 self.assertEqual(out_val, outputs[i])
 
-#!/usr/bin/python3
-"""Unittest module for the console"""
-
-import unittest
-import os
-import json
-import pycodestyle
-import io
-from console import HBNBCommand
-from models.engine.file_storage import FileStorage
-from unittest.mock import patch
-from models.user import User
-from models.place import Place
-from models.state import State
-from models.city import City
-from models.amenity import Amenity
-from models.review import Review
-
-
-
-class Testconsole(unittest.TestCase):
-    """Class that tests the console"""
-    
     def setUp(self):
         """Function empties file.json"""
         FileStorage._FileStorage__objects = {}

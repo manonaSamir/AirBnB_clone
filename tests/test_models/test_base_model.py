@@ -1,13 +1,13 @@
 #!/usr/bin/python3
 """ base model testing """
 
-
 import unittest
 from xmlrpc.client import DateTime
 from models.base_model import BaseModel
 import datetime
 import uuid
 import models
+
 
 class TestBaseModel(unittest.TestCase):
     """Test cases for BaseModel"""
@@ -16,7 +16,7 @@ class TestBaseModel(unittest.TestCase):
         models = BaseModel()
         self.assertIsInstance(models.id, str)
         self.assertIsInstance(models.created_at, datetime.datetime)
-        self.assertIsInstance(models.updated_at, datetime.datetime)      
+        self.assertIsInstance(models.updated_at, datetime.datetime)
 
     def test_init_with_data_method(self):
         id_val = str(uuid.uuid4())
@@ -49,7 +49,7 @@ class TestBaseModel(unittest.TestCase):
     def test_to_dict_type(self):
         obj = BaseModel()
         self.assertTrue(dict, type(obj.to_dict()))
-        
+
     def test_save_method(self):
         """test save method"""
         obj = BaseModel()
@@ -66,8 +66,7 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(base_model_dict["__class__"], "BaseModel")
         self.assertTrue(isinstance(base_model_dict["created_at"], str))
         self.assertTrue(isinstance(base_model_dict["updated_at"], str))
-        self.assertTrue(isinstance(base_model_dict["id"], str))        
-    
+        self.assertTrue(isinstance(base_model_dict["id"], str))
 
     def test_to_dict_contains_correct_keys(self):
         obj = BaseModel()
@@ -81,7 +80,7 @@ class TestBaseModel(unittest.TestCase):
         obj.name = "Holberton"
         obj.my_number = 98
         self.assertIn("name", obj.to_dict())
-        self.assertIn("my_number", obj.to_dict())  
+        self.assertIn("my_number", obj.to_dict())
 
     def test_to_dict_output(self):
         dt = datetime.datetime.today()
@@ -95,6 +94,3 @@ class TestBaseModel(unittest.TestCase):
             'updated_at': dt.isoformat()
         }
         self.assertDictEqual(obj.to_dict(), tdict)
-
-if __name__ == "__main__":
-    unittest.main()

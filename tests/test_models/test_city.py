@@ -4,7 +4,6 @@ from models.city import City
 import unittest
 
 
-
 class TestDocsBaseModel(unittest.TestCase):
     """test docstrings for base and test_base files"""
 
@@ -21,4 +20,3 @@ class TestDocsBaseModel(unittest.TestCase):
 
         self.assertEqual(self.city.state_id, "BurSaid")
         self.assertEqual(self.city.name, "Egypt")
-        

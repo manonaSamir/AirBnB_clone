@@ -33,7 +33,6 @@ class PlaceTest(unittest.TestCase):
         self.place.latitude = 40.7128
         self.place.longitude = -74.0060
         self.place.amenity_ids = [1, 2, 3]
-
         self.assertEqual(self.place.city_id, "1")
         self.assertEqual(self.place.user_id, "2")
         self.assertEqual(self.place.name, "Cozy Cabin")
@@ -45,4 +44,3 @@ class PlaceTest(unittest.TestCase):
         self.assertEqual(self.place.latitude, 40.7128)
         self.assertEqual(self.place.longitude, -74.0060)
         self.assertEqual(self.place.amenity_ids, [1, 2, 3])
-        
