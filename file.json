@@ -21,13 +21,13 @@
     "User.6e516bdd-18ed-4cc6-b928-d63594bd3231": {
         "id": "6e516bdd-18ed-4cc6-b928-d63594bd3231",
         "created_at": "2024-02-11T15:01:22.640458",
-        "updated_at": "2024-02-11T22:08:10.348389",
-        "first_name": "Johncdd",
+        "updated_at": "2024-02-11T22:12:23.851870",
+        "first_name": "John",
         "last_name": "Bar",
         "email": "airbnb@mail.com",
         "password": "root",
-        "age": 89,
-        " \"age\"": " 81",
+        "age": 85,
+        "stage": 89,
         "__class__": "User"
     },
     "User.dbdaf6ca-04ef-4509-91df-750d707895da": {

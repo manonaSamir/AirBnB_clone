@@ -197,7 +197,7 @@ class HBNBCommand(cmd.Cmd):
                         attribute_dict = ast.literal_eval(','.join(args[1:]))
                         if isinstance(attribute_dict, dict):
                             for key, value in attribute_dict.items():
-                                setattr(obj, key.strip('" '), value)
+                                setattr(obj, key.strip('" ').replace("'", ""), value)
                             obj.save()
                     else:
                        try:
