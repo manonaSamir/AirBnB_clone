@@ -91,28 +91,7 @@ class HBNBCommand(cmd.Cmd):
                     models.storage.reload()
                     return
             if sw == 0:
-                print("** no instance found **")
-        # arg = line.split(" ", 1)
-        # if (len(arg) > 1  and "\"" in arg[1]):
-        #     arg[1] = arg[1].strip('\"')
-
-        # if not line:
-        #     print("** class name missing **")
-        #     return
-
-        # elif arg[0] not in self.app_command:
-        #     print("** class doesn't exist **")
-
-        # elif len(arg) < 2:
-        #     print("** instance id missing **")
-
-        # if (len(arg) >= 2):
-        #     if arg[0]+'.'+arg[1] not in models.storage\
-        #             ._FileStorage__objects.keys():
-        #         print("** no instance found **")
-        #     else:
-        #         del models.storage._FileStorage__objects[arg[0]+'.'+arg[1]]
-        #         models.storage.save()
+                print("** no instance found **")      
 
     def do_all(self, line):
         """ Prints all string representation of all
@@ -120,6 +99,11 @@ class HBNBCommand(cmd.Cmd):
         arg = line.split(" ", 1)
         if arg[0] not in self.app_command:
             print("** class doesn't exist **")
+        elif arg == "":
+            for key, obj in self.app_command:
+                list_objs.append(str(obj))
+            if len(list_objs) > 0:
+                print(list_objs)
         else:
             list_objs = []
             for key, obj in models.storage._FileStorage__objects.items():

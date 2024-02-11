@@ -52,5 +52,17 @@
         "created_at": "2024-02-11T20:09:36.116318",
         "updated_at": "2024-02-11T20:09:36.116318",
         "__class__": "User"
+    },
+    "BaseModel.945db325-94fc-4514-84ac-700792464ad6": {
+        "id": "945db325-94fc-4514-84ac-700792464ad6",
+        "created_at": "2024-02-11T22:24:27.540141",
+        "updated_at": "2024-02-11T22:24:27.540141",
+        "__class__": "BaseModel"
+    },
+    "BaseModel.e68d45e3-dfa2-4350-b544-6fcca3dcab01": {
+        "id": "e68d45e3-dfa2-4350-b544-6fcca3dcab01",
+        "created_at": "2024-02-11T22:24:49.796167",
+        "updated_at": "2024-02-11T22:24:49.796167",
+        "__class__": "BaseModel"
     }
 }
