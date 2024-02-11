@@ -16,7 +16,7 @@ class BaseModel:
         if kwargs is None or len(kwargs) == 0:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.datetime.now()
-            self.updated_at = self.created_at
+            self.updated_at = datetime.datetime.now()
             models.storage.new(self)
         else:
             for key, val in kwargs.items():
@@ -30,7 +30,7 @@ class BaseModel:
 
     def __str__(self):
         """represents the class objects as a string"""
-        return f"[{self.__class__.__name__}]({self.id}) {self.__dict__}"
+        return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
 
     def save(self):
         """ updates the public instance attribute
