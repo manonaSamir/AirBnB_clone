@@ -192,33 +192,31 @@ class HBNBCommand(cmd.Cmd):
             obj = models.storage._FileStorage__objects.get(
                 cls_name + '.' + obj_id)
             if obj:
-                try:
-                    if "{" in args[1]:
-                        attribute_dict = ast.literal_eval(','.join(args[1:]))
-                        if isinstance(attribute_dict, dict):
-                            for key, value in attribute_dict.items():
-                                setattr(obj, key.strip('" ').replace("'", ""), value)
-                            obj.save()
-                    else:
-                       try:
-                          obj_id = args[0].strip('" ')
-                          if len(args) < 2:
-                              data = args[1].split(':')
-                              if data[1].isdigit():
-                                    data[1] = int(data[1])
-                              elif data[1].replace('.', '', 1).isdigit():
-                                  data[1] = float(data[1])
-                              setattr(obj, data[0].strip('" ').replace("'", ""), data[1].strip('" '))   
-                          else:
-                               if args[2].startswith('"'):
-                                    args[2] = args[2].split('"')[1]
-                               setattr(obj, args[1], args[2])
-                       except AttributeError:
-                          pass                       
-                       
-                       obj.save()
-                except (SyntaxError, ValueError):
-                    print("** Invalid attribute format. Unable to evaluate **")
+                if "{" in args[1]:
+                    attribute_dict = ast.literal_eval(','.join(args[1:]))
+                    if isinstance(attribute_dict, dict):
+                        for key, value in attribute_dict.items():
+                            setattr(obj, key.strip('" ')
+                                    .replace("'", ""), value)
+                        obj.save()
+                else:
+                    try:
+                        obj_id = args[0].strip('" ')
+                        if len(args) < 2:
+                            data = args[1].split(':')
+                            if data[1].isdigit():
+                                data[1] = int(data[1])
+                            elif data[1].replace('.', '', 1).isdigit():
+                                data[1] = float(data[1])
+                            setattr(obj, data[0].strip('" ')
+                                    .replace("'", ""), data[1].strip('" '))
+                        else:
+                            if args[2].startswith('"'):
+                                args[2] = args[2].split('"')[1]
+                            setattr(obj, args[1], args[2])
+                    except AttributeError:
+                        pass
+                    obj.save()
             else:
                 print("** no instance found **")
 
