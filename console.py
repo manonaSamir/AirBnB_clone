@@ -91,7 +91,7 @@ class HBNBCommand(cmd.Cmd):
                     models.storage.reload()
                     return
             if sw == 0:
-                print("** no instance found **")      
+                print("** no instance found **")
 
     def do_all(self, line):
         """ Prints all string representation of all
@@ -106,7 +106,6 @@ class HBNBCommand(cmd.Cmd):
             if len(list_objs) > 0:
                 print(list_objs)
         else:
-            
             for key, obj in models.storage._FileStorage__objects.items():
                 if arg[0] == key.split('.')[0]:
                     list_objs.append(str(obj))
