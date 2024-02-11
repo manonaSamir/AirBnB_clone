@@ -189,7 +189,8 @@ class HBNBCommand(cmd.Cmd):
             arg_dict = "{" + arg_dict
             dictionary = eval(arg_dict)
             for key, val in dictionary.items():
-                obj = models.storage._FileStorage__objects[cls_name +'.'+args[0].strip('" ')]
+                obj = models.storage._FileStorage__objects
+                [cls_name + '.' + args[0].strip('" ')]
                 if key in obj.__dict__.keys():
                     try:
                         if val.isdigit():
