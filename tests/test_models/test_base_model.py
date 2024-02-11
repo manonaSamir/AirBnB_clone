@@ -45,6 +45,10 @@ class TestBaseModel(unittest.TestCase):
         """test str method"""
         self.assertEqual(str, type(BaseModel().id))
 
+    def test_to_dict_type(self):
+        obj = BaseModel()
+        self.assertTrue(dict, type(obj.to_dict()))
+        
     def test_save_method(self):
         """test save method"""
         obj = BaseModel()
