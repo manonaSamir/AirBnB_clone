@@ -97,15 +97,16 @@ class HBNBCommand(cmd.Cmd):
         """ Prints all string representation of all
         instances based or not on the class name."""
         arg = line.split(" ", 1)
-        if arg[0] not in self.app_command:
+        list_objs = []
+        if arg[0] not in self.app_command and arg[0] != "":
             print("** class doesn't exist **")
-        elif arg == "":
-            for key, obj in self.app_command:
+        elif line == "":
+            for key, obj in models.storage.all().items():
                 list_objs.append(str(obj))
             if len(list_objs) > 0:
                 print(list_objs)
         else:
-            list_objs = []
+            
             for key, obj in models.storage._FileStorage__objects.items():
                 if arg[0] == key.split('.')[0]:
                     list_objs.append(str(obj))
