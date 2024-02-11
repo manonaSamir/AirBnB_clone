@@ -6,7 +6,7 @@ import unittest
 from models.base_model import BaseModel
 import datetime
 import uuid
-
+import models
 
 class TestBaseModel(unittest.TestCase):
     """Test cases for BaseModel"""
@@ -34,6 +34,12 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(obj.updated_at,
                          datetime.datetime.fromisoformat(str(updated_at_val)))
         self.assertEqual(obj.other_attribute, "other_value")
+
+    def test_no_args_instantiates(self):
+        self.assertEqual(BaseModel, type(BaseModel()))
+
+    def test_new_instance_stored_in_objects(self):
+        self.assertIn(BaseModel(), models.storage.all().values())
 
     def test_str_method(self):
         """test str method"""
