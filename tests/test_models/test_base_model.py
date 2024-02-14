@@ -36,6 +36,18 @@ class TestBaseModel(unittest.TestCase):
                          datetime.datetime.fromisoformat(str(updated_at_val)))
         self.assertEqual(obj.other_attribute, "other_value")
 
+    def test_str_representation(self):
+            dt = datetime.today()
+            dt_repr = repr(dt)
+            bm = BaseModel()
+            bm.id = "123456"
+            bm.created_at = bm.updated_at = dt
+            bmstr = bm.__str__()
+            self.assertIn("[BaseModel] (123456)", bmstr)
+            self.assertIn("'id': '123456'", bmstr)
+            self.assertIn("'created_at': " + dt_repr, bmstr)
+            self.assertIn("'updated_at': " + dt_repr, bmstr)
+
     def test_no_args_instantiates(self):
         self.assertEqual(BaseModel, type(BaseModel()))
 
@@ -44,11 +56,16 @@ class TestBaseModel(unittest.TestCase):
 
     def test_str_method(self):
         """test str method"""
+        base_model = BaseModel()
+        expected_str = f"[BaseModel] ({base_model.id}) {base_model.__dict__}"
+        self.assertEqual(str(base_model), expected_str)
         self.assertEqual(str, type(BaseModel().id))
+        
 
     def test_to_dict_type(self):
         obj = BaseModel()
         self.assertTrue(dict, type(obj.to_dict()))
+        
 
     def test_save_method(self):
         """test save method"""
@@ -94,3 +111,7 @@ class TestBaseModel(unittest.TestCase):
             'updated_at': dt.isoformat()
         }
         self.assertDictEqual(obj.to_dict(), tdict)
+        
+
+if __name__ == "__main__":
+    unittest.main()
